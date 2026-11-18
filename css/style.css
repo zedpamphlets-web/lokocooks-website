@@ -324,3 +324,19 @@ a:focus-visible, .btn:focus-visible { outline: 3px solid var(--amber); outline-o
 .play-badge-sm b { font-size: 12px; }
 .play-badge-sm .arrow { width: 20px; height: 20px; }
 .play-badge-sm .arrow svg { width: 10px; height: 10px; }
+
+/* ---------- Hero slideshow ---------- */
+.hero-photo.slideshow { position: relative; }
+.hero-photo .slides { position: relative; width: 100%; height: 100%; }
+.hero-photo .slide {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; opacity: 0; transition: opacity 0.8s ease;
+}
+.hero-photo .slide.active { opacity: 1; position: relative; }
+
+/* Ensure desktop fills nicely and no weird white gaps */
+@media (min-width: 900px) {
+  .hero .grid { grid-template-columns: 1fr 1fr; align-items: center; }
+  .hero-photo { max-height: 520px; }
+}
+body { overflow-x: hidden; }

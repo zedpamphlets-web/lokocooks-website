@@ -50,8 +50,14 @@
       </div>
       <p class="note">Free to download · Android · Made in Zambia</p>
     </div>
-    <div class="hero-photo">
-      <img src="img/food.jpg" alt="Nshima with chicken and fresh relish on a banana leaf" width="1000" height="1000">
+    <div class="hero-photo slideshow">
+      <div class="slides">
+        <img src="img/slideshow/slide1.jpg" alt="Delicious Lusaka meal" class="slide active">
+        <img src="img/slideshow/slide2.png" alt="Choose your sides" class="slide">
+        <img src="img/slideshow/slide3.png" alt="Food markets near you" class="slide">
+        <img src="img/slideshow/slide4.png" alt="Your basket" class="slide">
+        <img src="img/slideshow/slide5.png" alt="Delivery complete" class="slide">
+      </div>
       <div class="tag"><i></i> Delivery across Lusaka</div>
     </div>
   </div>
@@ -213,24 +219,38 @@
   </div>
 </footer>
 
-<script>
-document.querySelectorAll(".type-text").forEach((el, i) => {
-  const text = el.textContent;
-  el.textContent = "";
-  el.style.borderRight = "3px solid #e07a1f";
-  let n = 0;
-  const delay = 40 + i * 200;
-  setTimeout(() => {
-    const timer = setInterval(() => {
-      el.textContent = text.slice(0, n++);
-      if (n > text.length) {
-        clearInterval(timer);
-        setTimeout(() => el.style.borderRight = "none", 600);
-      }
-    }, 45);
-  }, delay);
-});
-</script>
 
+<script>
+function startTyping() {
+  document.querySelectorAll(".type-text").forEach((el, i) => {
+    const text = el.dataset.full || el.textContent;
+    el.dataset.full = text;
+    el.textContent = "";
+    el.style.borderRight = "3px solid #e07a1f";
+    let n = 0;
+    const delay = 300 + i * 400;
+    setTimeout(() => {
+      const timer = setInterval(() => {
+        el.textContent = text.slice(0, n++);
+        if (n > text.length) {
+          clearInterval(timer);
+          setTimeout(() => el.style.borderRight = "none", 500);
+        }
+      }, 40);
+    }, delay);
+  });
+}
+startTyping();
+setInterval(startTyping, 15000);
+
+// Hero slideshow
+const slides = document.querySelectorAll(".slideshow .slide");
+let current = 0;
+setInterval(() => {
+  slides[current].classList.remove("active");
+  current = (current + 1) % slides.length;
+  slides[current].classList.add("active");
+}, 3500);
+</script>
 </body>
 </html>
