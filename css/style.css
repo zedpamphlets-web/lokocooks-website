@@ -234,3 +234,93 @@ a:focus-visible, .btn:focus-visible { outline: 3px solid var(--amber); outline-o
   .screenshots-grid { grid-template-columns: repeat(4, 1fr); gap: 22px; }
   .shot img { border-radius: 26px; }
 }
+
+/* ---------- Typing animation ---------- */
+.typing {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 3px solid var(--amber);
+  animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+  max-width: 100%;
+}
+.typing-delay {
+  animation-delay: 0.4s;
+}
+.typing-delay-2 {
+  animation-delay: 0.8s;
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+@keyframes blink-caret {
+  from, to { border-color: transparent; }
+  50% { border-color: var(--amber); }
+}
+
+/* Make headings able to type */
+.hero h1.typing, 
+.sec-head h2.typing {
+  white-space: normal;
+  border-right: none;
+  animation: none;
+}
+.hero h1 .type-text,
+.sec-head h2 .type-text {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 3px solid var(--amber);
+  animation: typing 3.2s steps(36, end), blink-caret .7s step-end infinite;
+  vertical-align: bottom;
+}
+.sec-head h2 .type-text { border-right-color: var(--maroon); }
+
+/* ---------- Water bounce on cards ---------- */
+.card {
+  animation: water-bounce 4.5s ease-in-out infinite;
+}
+.card:nth-child(2) { animation-delay: 0.4s; }
+.card:nth-child(3) { animation-delay: 0.8s; }
+.card:nth-child(4) { animation-delay: 1.2s; }
+.card:nth-child(5) { animation-delay: 1.6s; }
+.card:nth-child(6) { animation-delay: 2s; }
+
+@keyframes water-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* ---------- Better Play badge (closer to reference) ---------- */
+.play-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #000;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 12px;
+  padding: 8px 10px 8px 12px;
+  box-shadow: 0 6px 20px rgba(0,0,0,.28);
+  transition: transform .15s ease, box-shadow .15s ease;
+  min-height: 52px;
+}
+.play-badge:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(0,0,0,.35); }
+.play-badge .play-logo { flex: none; width: 26px; height: 26px; }
+.play-badge span { display: flex; flex-direction: column; line-height: 1.05; margin-right: 6px; }
+.play-badge small { font-size: 9px; letter-spacing: .06em; font-weight: 700; opacity: .85; }
+.play-badge b { font-family: "Sora", system-ui, sans-serif; font-size: 16px; font-weight: 700; letter-spacing: -0.02em; }
+.play-badge .arrow {
+  width: 28px; height: 28px; border-radius: 50%; background: #fff; color: #000;
+  display: grid; place-items: center; flex: none; margin-left: 4px;
+}
+.play-badge .arrow svg { width: 14px; height: 14px; }
+
+.play-badge-sm { min-height: 40px; padding: 5px 8px 5px 8px; border-radius: 10px; }
+.play-badge-sm .play-logo { width: 18px; height: 18px; }
+.play-badge-sm small { font-size: 7px; }
+.play-badge-sm b { font-size: 12px; }
+.play-badge-sm .arrow { width: 20px; height: 20px; }
+.play-badge-sm .arrow svg { width: 10px; height: 10px; }
