@@ -363,3 +363,12 @@ html, body {
 
 /* Prevent any element from causing horizontal scroll */
 img, svg, .play-badge, .btn, .card, .stat { max-width: 100%; }
+
+/* Typing text must wrap normally on mobile */
+.type-text {
+  white-space: normal !important;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  display: inline;
+}
+.hero h1 { overflow-wrap: break-word; word-break: break-word; }

@@ -221,10 +221,14 @@
 <script>
 function startTyping() {
   document.querySelectorAll(".type-text").forEach((el, i) => {
-    const text = el.dataset.full || el.textContent;
+    const text = el.dataset.full || el.textContent.trim();
     el.dataset.full = text;
     el.textContent = "";
     el.style.borderRight = "3px solid #e07a1f";
+    el.style.whiteSpace = "normal";
+    el.style.wordWrap = "break-word";
+    el.style.overflowWrap = "break-word";
+    el.style.display = "inline";
     let n = 0;
     const delay = 300 + i * 400;
     setTimeout(() => {
@@ -244,11 +248,13 @@ setInterval(startTyping, 15000);
 // Hero slideshow
 const slides = document.querySelectorAll(".slideshow .slide");
 let current = 0;
-setInterval(() => {
-  slides[current].classList.remove("active");
-  current = (current + 1) % slides.length;
-  slides[current].classList.add("active");
-}, 3500);
+if (slides.length) {
+  setInterval(() => {
+    slides[current].classList.remove("active");
+    current = (current + 1) % slides.length;
+    slides[current].classList.add("active");
+  }, 3500);
+}
 </script>
 </body>
 </html>
